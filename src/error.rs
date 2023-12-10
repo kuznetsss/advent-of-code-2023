@@ -3,6 +3,7 @@ use std::{fmt::Display, io};
 #[derive(Debug)]
 pub enum AocError {
     IoError(io::Error, String),
+    DigitNotFound(String)
 }
 
 impl Display for AocError {
@@ -12,6 +13,9 @@ impl Display for AocError {
             IoError(err, path) => {
                 write!(f, "IO error: {err} for \"{path}\"")
             },
+            DigitNotFound(line) => {
+                write!(f, "Can't find a digit in line: {line}")
+            }
         }
     }
 }
