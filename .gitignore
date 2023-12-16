@@ -1,2 +1,4 @@
 input.txt
 /target
+advent_of_code.yml
+.cache/

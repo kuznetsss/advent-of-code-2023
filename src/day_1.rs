@@ -1,12 +1,8 @@
-use std::fs;
-
 use crate::error::AocError;
 
-pub fn day_1(file_path: &String) -> Result<u32, AocError> {
+pub fn day_1(input: &String) -> Result<u32, AocError> {
     let mut sum: u32 = 0;
-    let content =
-        fs::read_to_string(file_path).map_err(|e| AocError::IoError(e, file_path.clone()))?;
-    for line in content.lines() {
+    for line in input.lines() {
         sum += sum_in_line(line)?;
     }
     Ok(sum)
