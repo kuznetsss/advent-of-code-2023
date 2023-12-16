@@ -1,5 +1,4 @@
 use crate::error::AocError;
-use crate::command::Command;
 
 use reqwest::blocking;
 use serde::Deserialize;
