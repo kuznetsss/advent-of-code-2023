@@ -32,6 +32,9 @@ fn main_impl() -> Result<(), AocError> {
         Command::DAY2 => {
             result = day_2::day_2(&input)?;
         }
+        Command::DAY2PART2 => {
+            result = day_2::day_2_part_2(&input)?;
+        }
     };
     println!("The result is {result}");
     Ok(())
