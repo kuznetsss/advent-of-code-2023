@@ -33,17 +33,17 @@ struct Game {
 
 impl Game {
     fn new(s: &str) -> Result<Self, AocError> {
-        let s = s.strip_prefix("Game ").ok_or(AocError::Day2ParseError(
+        let s = s.strip_prefix("Game ").ok_or(AocError::ParseError(
             "No prefix 'Game '".to_string(),
             s.to_string(),
         ))?;
-        let id = s.split(':').nth(0).ok_or(AocError::Day2ParseError(
+        let id = s.split(':').nth(0).ok_or(AocError::ParseError(
             "No ':' found".to_string(),
             s.to_string(),
         ))?;
         let id: u32 = id
             .parse::<u32>()
-            .map_err(|e| AocError::Day2ParseError(e.to_string(), id.to_string()))?;
+            .map_err(|e| AocError::ParseError(e.to_string(), id.to_string()))?;
         let mut game = Game {
             id,
             red: 0,
@@ -53,12 +53,12 @@ impl Game {
         for round in s.split(':').nth(1).unwrap().split(';') {
             for color_and_value in round.trim().split(',') {
                 let mut splited = color_and_value.trim().split(' ');
-                let value = splited.nth(0).ok_or(AocError::Day2ParseError(
+                let value = splited.nth(0).ok_or(AocError::ParseError(
                     "No space in color".to_string(),
                     color_and_value.to_string(),
                 ))?;
                 let value: u32 = value.parse().unwrap();
-                let color = splited.nth(0).ok_or(AocError::Day2ParseError(
+                let color = splited.nth(0).ok_or(AocError::ParseError(
                     "No color value".to_string(),
                     color_and_value.to_string(),
                 ))?;
@@ -67,7 +67,7 @@ impl Game {
                     "blue" => game.blue = std::cmp::max(game.blue, value),
                     "green" => game.green = std::cmp::max(game.green, value),
                     _ => {
-                        return Err(AocError::Day2ParseError(
+                        return Err(AocError::ParseError(
                             "Unexpected color".to_string(),
                             color.to_string(),
                         ))

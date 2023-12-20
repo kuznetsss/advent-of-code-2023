@@ -6,7 +6,7 @@ pub enum AocError {
     DigitNotFound(String),
     ErrorDownloadingInput(String),
     CantParseConfig(String, String),
-    Day2ParseError(String, String)
+    ParseError(String, String)
 }
 
 impl Display for AocError {
@@ -25,7 +25,7 @@ impl Display for AocError {
             CantParseConfig(err, file) => {
                 write!(f, "Error parsing file {file}: {err}")
             }
-            Day2ParseError(err, line) => {
+            ParseError(err, line) => {
                 write!(f, "Error parsing line {line}: {err}")
             }
         }

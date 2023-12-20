@@ -1,5 +1,6 @@
 mod day_1;
 mod day_2;
+mod day_3;
 
 mod command;
 mod error;
@@ -35,6 +36,10 @@ fn main_impl() -> Result<(), AocError> {
         Command::DAY2PART2 => {
             result = day_2::day_2_part_2(&input)?;
         }
+        Command::DAY3 => {
+            result = day_3::day_3(&input)?;
+        }
+
     };
     println!("The result is {result}");
     Ok(())
